@@ -101,7 +101,7 @@ public class BlockServiceImpl implements BlockService {
                 .content(content)
                 .sortKey(sortKey)
                 .createdBy(normalizedActorId)
-                .updatedBy(normalizedActorId)
+                .modifiedBy(normalizedActorId)
                 .build();
 
         Block createdBlock = blockRepository.save(newBlock);

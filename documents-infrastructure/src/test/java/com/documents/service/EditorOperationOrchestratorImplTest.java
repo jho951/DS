@@ -2738,7 +2738,7 @@ class EditorOperationOrchestratorImplTest {
                 .content(EMPTY_BLOCK_CONTENT)
                 .sortKey(sortKey)
                 .createdBy(ACTOR_ID)
-                .updatedBy(ACTOR_ID)
+                .modifiedBy(ACTOR_ID)
                 .build();
         block.setVersion(version);
         return block;

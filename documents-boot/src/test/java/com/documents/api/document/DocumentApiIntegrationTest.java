@@ -320,7 +320,7 @@ class DocumentApiIntegrationTest {
 			.sortKey(sortKey)
 			.visibility(DocumentVisibility.PRIVATE)
 			.createdBy(ownerId)
-			.updatedBy(ownerId)
+			.modifiedBy(ownerId)
 			.build());
 	}
 
@@ -331,7 +331,7 @@ class DocumentApiIntegrationTest {
 			.sortKey(sortKey)
 			.visibility(DocumentVisibility.PRIVATE)
 			.createdBy(ownerId)
-			.updatedBy(ownerId)
+			.modifiedBy(ownerId)
 			.deletedAt(deletedAt)
 			.build());
 	}
@@ -345,7 +345,7 @@ class DocumentApiIntegrationTest {
 			.content(toContent(text))
 			.sortKey(sortKey)
 			.createdBy(USER_ID)
-			.updatedBy(USER_ID)
+			.modifiedBy(USER_ID)
 			.build());
 	}
 

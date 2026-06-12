@@ -62,7 +62,7 @@ class DocumentBlocksApiIntegrationTest {
                 .content(content("삭제된 블록"))
                 .sortKey("000000000002000000000000")
                 .createdBy("user-123")
-                .updatedBy("user-123")
+                .modifiedBy("user-123")
                 .deletedAt(LocalDateTime.of(2026, 3, 16, 0, 0))
                 .build());
 
@@ -79,7 +79,7 @@ class DocumentBlocksApiIntegrationTest {
                 .title(title)
                 .sortKey("00000000000000000001")
                 .createdBy("user-123")
-                .updatedBy("user-123")
+                .modifiedBy("user-123")
                 .build());
     }
 
@@ -92,7 +92,7 @@ class DocumentBlocksApiIntegrationTest {
                 .content(content(text))
                 .sortKey(sortKey)
                 .createdBy("user-123")
-                .updatedBy("user-123")
+                .modifiedBy("user-123")
                 .build());
     }
 

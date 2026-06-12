@@ -84,7 +84,7 @@ class DocumentControllerWebMvcTest {
 			.iconJson(iconJson)
 			.coverJson(coverJson)
 			.createdBy(actorId)
-			.updatedBy(actorId)
+			.modifiedBy(actorId)
 			.build();
 		document.setCreatedAt(FIXTURE_TIME);
 		document.setUpdatedAt(FIXTURE_TIME);
@@ -98,7 +98,7 @@ class DocumentControllerWebMvcTest {
 			.title(PARENT_DOCUMENT_TITLE)
 			.sortKey("00000000000000000001")
 			.createdBy(ownerMarker.toString())
-			.updatedBy(ownerMarker.toString())
+			.modifiedBy(ownerMarker.toString())
 			.build();
 	}
 
@@ -112,13 +112,13 @@ class DocumentControllerWebMvcTest {
 	) {
 		Block block = Block.builder()
 			.id(id)
-			.document(Document.builder().id(documentId).title(ROOT_DOCUMENT_TITLE).createdBy(ACTOR_ID).updatedBy(ACTOR_ID).build())
+			.document(Document.builder().id(documentId).title(ROOT_DOCUMENT_TITLE).createdBy(ACTOR_ID).modifiedBy(ACTOR_ID).build())
 			.parent(parentId == null ? null : Block.builder().id(parentId).build())
 			.type(BlockType.TEXT)
 			.sortKey(sortKey)
 			.content(content)
 			.createdBy(ACTOR_ID)
-			.updatedBy(ACTOR_ID)
+			.modifiedBy(ACTOR_ID)
 			.build();
 		block.setCreatedAt(FIXTURE_TIME);
 		block.setUpdatedAt(FIXTURE_TIME);

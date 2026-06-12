@@ -1233,7 +1233,7 @@ class DocumentServiceImplTest {
 			.title(title)
 			.sortKey(sortKey)
 			.createdBy(ownerId)
-			.updatedBy(ownerId)
+			.modifiedBy(ownerId)
 			.build();
 	}
 

@@ -29,17 +29,17 @@ public abstract class BaseAuditableEntity extends BaseEntity {
 
     @LastModifiedBy
     @Column(name = "modified_by", length = 64)
-    private String updatedBy;
+    private String modifiedBy;
 
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
-    public String getModifiedBy() {
-        return updatedBy;
+    public String getUpdatedBy() {
+        return modifiedBy;
     }
 
-    public void setModifiedBy(String modifiedBy) {
-        updatedBy = modifiedBy;
+    public void setUpdatedBy(String updatedBy) {
+        modifiedBy = updatedBy;
     }
 
     public boolean isDeleted() {

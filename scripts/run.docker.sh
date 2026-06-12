@@ -54,6 +54,8 @@ if [[ -z "${GH_TOKEN:-}" ]]; then
   [[ -n "$GH_TOKEN" ]] || GH_TOKEN="$(gradle_property githubToken)"
   [[ -n "$GH_TOKEN" ]] || GH_TOKEN="$(gradle_property ghToken)"
   [[ -n "$GH_TOKEN" ]] || GH_TOKEN="$(gradle_property gh_token)"
+  [[ -n "$GH_TOKEN" ]] || GH_TOKEN="${GH_PACKAGES_TOKEN:-}"
+  [[ -n "$GH_TOKEN" ]] || GH_TOKEN="${GITHUB_TOKEN:-}"
   export GH_TOKEN
 fi
 
@@ -64,9 +66,43 @@ fi
 if [[ -z "${GITHUB_ACTOR:-}" ]]; then
   GITHUB_ACTOR="$(gradle_property githubPackagesUsername)"
   [[ -n "$GITHUB_ACTOR" ]] || GITHUB_ACTOR="$(gradle_property githubUsername)"
-  [[ -n "$GITHUB_ACTOR" ]] || GITHUB_ACTOR="jho951"
+  [[ -n "$GITHUB_ACTOR" ]] || GITHUB_ACTOR="$(gradle_property githubActor)"
+  [[ -n "$GITHUB_ACTOR" ]] || GITHUB_ACTOR="${GITHUB_USERNAME:-}"
   export GITHUB_ACTOR
 fi
+
+validate_github_packages_credentials() {
+  if [[ "$ENV_NAME" != "dev" ]]; then
+    return
+  fi
+
+  case "$ACTION" in
+    up|build|restart) ;;
+    *) return ;;
+  esac
+
+  if [[ -n "${GH_TOKEN:-}${GITHUB_TOKEN:-}" && -n "${GITHUB_ACTOR:-}" ]]; then
+    return
+  fi
+
+  cat >&2 <<'EOF'
+GitHub Packages 인증 정보가 없어 dev Docker 빌드를 시작할 수 없습니다.
+
+공유 토큰을 쓰지 말고 개인 GitHub PAT(read:packages)를 설정하세요.
+
+권장 위치:
+  ~/.gradle/gradle.properties
+
+필수 값:
+  githubPackagesUsername=<your-github-id>
+  githubPackagesToken=<your-read-packages-token>
+
+또는 현재 셸/ignored .env.dev에 GITHUB_ACTOR, GH_TOKEN을 설정할 수 있습니다.
+EOF
+  exit 1
+}
+
+validate_github_packages_credentials
 
 SHARED_NETWORK="${SERVICE_SHARED_NETWORK:-service-backbone-shared}"
 if ! docker network inspect "$SHARED_NETWORK" >/dev/null 2>&1; then

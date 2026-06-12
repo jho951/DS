@@ -182,7 +182,7 @@ class BlockAttachmentApiIntegrationTest {
             .sortKey("00000000000000000001")
             .visibility(DocumentVisibility.PRIVATE)
             .createdBy(ownerId)
-            .updatedBy(ownerId)
+            .modifiedBy(ownerId)
             .build());
     }
 
@@ -194,7 +194,7 @@ class BlockAttachmentApiIntegrationTest {
             .content("{\"format\":\"rich_text\",\"schemaVersion\":1,\"segments\":[{\"text\":\"%s\",\"marks\":[]}]}".formatted(text))
             .sortKey(UUID.randomUUID().toString().replace("-", "").substring(0, 24))
             .createdBy(USER_ID)
-            .updatedBy(USER_ID)
+            .modifiedBy(USER_ID)
             .build());
     }
 }

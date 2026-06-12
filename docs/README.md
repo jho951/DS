@@ -22,9 +22,11 @@
   - 코드만으로 빠르게 파악하기 어려운 핵심 기술 구조 설명
 - [docs/learn/](https://github.com/jho951/editor-service/blob/main/docs/learn/README.md)
   - 개인 학습용 로컬 문서와 개인 트러블슈팅 기록
+- [docs/platform.md](https://github.com/jho951/editor-service/blob/main/docs/platform.md)
+  - `platform-runtime`, `platform-security`, `platform-governance`, `platform-resource` 현재 소비 기준
 - [docs/guides/](https://github.com/jho951/editor-service/blob/main/docs/guides/README.md)
   - 프론트/서버 구현 계약, 작업 순서, 체크리스트
-- [docs/runbook/troubleshooting.md](https://github.com/jho951/editor-service/blob/main/docs/runbook/troubleshooting.md)
+- [docs/troubleshooting.md](https://github.com/jho951/service-editor/blob/main/docs/troubleshooting.md)
   - Gateway 내부 JWT, 문서 API 401, 환경 설정 점검
 - [docs/guides/contract/contract-change-guideline.md](https://github.com/jho951/editor-service/blob/main/docs/guides/contract/contract-change-guideline.md)
   - 구현 변경 후 service-contract, local 문서, contract.lock.yml 갱신 순서
@@ -75,3 +77,7 @@
   - 예: 선택지 비교에서 현재 추천 방향으로 넘어갈 때
   - 예: 본문 설명에서 추천 시나리오, 예시, 부록 성격 구간으로 넘어갈 때
 - 같은 `##` 레벨이라고 해서 일괄적으로 넣지 않는다. 일반적인 섹션 전환은 헤더와 빈 줄만으로 처리한다.
+
+## Contract Docs
+
+- [Contract docs](./contract/README.md): service-contract에서 이동한 서비스별 API, 보안, 운영, 에러 문서

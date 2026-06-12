@@ -82,7 +82,7 @@ public class DocumentResourceBindingService {
             .usageType(DocumentResourceUsageType.BLOCK_ATTACHMENT)
             .status(DocumentResourceStatus.ACTIVE)
             .createdBy(actorId)
-            .updatedBy(actorId)
+            .modifiedBy(actorId)
             .build());
     }
 
@@ -98,7 +98,7 @@ public class DocumentResourceBindingService {
             .documentVersion(document.getVersion() == null ? 0L : document.getVersion().longValue())
             .status(DocumentResourceStatus.ACTIVE)
             .createdBy(actorId)
-            .updatedBy(actorId)
+            .modifiedBy(actorId)
             .build());
     }
 

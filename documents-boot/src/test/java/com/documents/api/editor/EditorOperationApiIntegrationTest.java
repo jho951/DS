@@ -2909,7 +2909,7 @@ class EditorOperationApiIntegrationTest {
                 .title(title)
                 .sortKey("00000000000000000001")
                 .createdBy("user-123")
-                .updatedBy("user-123")
+                .modifiedBy("user-123")
                 .build());
     }
 
@@ -2922,7 +2922,7 @@ class EditorOperationApiIntegrationTest {
                 .content(content(text))
                 .sortKey(sortKey)
                 .createdBy("user-123")
-                .updatedBy("user-123")
+                .modifiedBy("user-123")
                 .build());
     }
 
@@ -2934,7 +2934,7 @@ class EditorOperationApiIntegrationTest {
                 .sortKey(sortKey)
                 .visibility(DocumentVisibility.PRIVATE)
                 .createdBy(ownerId)
-                .updatedBy(ownerId)
+                .modifiedBy(ownerId)
                 .build());
     }
 
@@ -2947,7 +2947,7 @@ class EditorOperationApiIntegrationTest {
                 .content(toContent(text))
                 .sortKey(sortKey)
                 .createdBy(USER_ID)
-                .updatedBy(USER_ID)
+                .modifiedBy(USER_ID)
                 .build());
     }
 

@@ -14,9 +14,7 @@ public class BlockJsonCodec {
     private final ObjectMapper objectMapper;
 
     public String write(JsonNode value) {
-        if (value == null || value.isNull()) {
-            return null;
-        }
+        if (value == null || value.isNull()) return null;
 
         try {
             return objectMapper.writeValueAsString(value);
@@ -26,9 +24,7 @@ public class BlockJsonCodec {
     }
 
     public JsonNode read(String value) {
-        if (value == null) {
-            return null;
-        }
+        if (value == null) return null;
 
         try {
             return objectMapper.readTree(value);

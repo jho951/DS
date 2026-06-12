@@ -105,7 +105,7 @@ public interface DocumentRepository extends JpaRepository<Document, UUID> {
 		update Document d
 		set d.deletedAt = :deletedAt,
 		    d.updatedAt = :deletedAt,
-		    d.updatedBy = :actorId,
+		    d.modifiedBy = :actorId,
 		    d.version = d.version + 1
 		where d.id in :documentIds
 		  and d.deletedAt is null
@@ -120,7 +120,7 @@ public interface DocumentRepository extends JpaRepository<Document, UUID> {
 	@Query("""
 		update Document d
 		set d.deletedAt = null,
-		    d.updatedBy = :actorId,
+		    d.modifiedBy = :actorId,
 		    d.updatedAt = :updatedAt,
 		    d.version = d.version + 1
 		where d.id in :documentIds
@@ -136,7 +136,7 @@ public interface DocumentRepository extends JpaRepository<Document, UUID> {
 	@Query("""
 		update Document d
 		set d.version = d.version + 1,
-		    d.updatedBy = :actorId,
+		    d.modifiedBy = :actorId,
 		    d.updatedAt = :updatedAt
 		where d.id = :documentId
 		  and d.deletedAt is null

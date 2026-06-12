@@ -182,7 +182,7 @@ class DocumentSnapshotApiIntegrationTest {
             .sortKey("00000000000000000001")
             .visibility(DocumentVisibility.PRIVATE)
             .createdBy(ownerId)
-            .updatedBy(ownerId)
+            .modifiedBy(ownerId)
             .createdAt(LocalDateTime.now())
             .updatedAt(LocalDateTime.now())
             .build());
@@ -199,7 +199,7 @@ class DocumentSnapshotApiIntegrationTest {
             .content("{\"format\":\"rich_text\",\"schemaVersion\":1,\"segments\":[{\"text\":\"%s\",\"marks\":[]}]}".formatted(text))
             .sortKey(sortKey)
             .createdBy(USER_ID)
-            .updatedBy(USER_ID)
+            .modifiedBy(USER_ID)
             .createdAt(LocalDateTime.now())
             .updatedAt(LocalDateTime.now())
             .build());

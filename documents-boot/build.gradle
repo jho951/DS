@@ -17,7 +17,8 @@ dependencies {
     implementation 'io.github.jho951.platform:platform-security-web-api'
     implementation 'io.github.jho951.platform:platform-resource-starter'
     implementation 'io.github.jho951.platform:platform-resource-jdbc'
-    implementation 'io.github.jho951.platform:platform-resource-support-local'
+    implementation 'io.github.jho951.platform:platform-resource-jdbc-relay'
+    runtimeOnly 'io.github.jho951.platform:platform-resource-support-local'
     implementation "io.github.jho951.platform:platform-security-governance-bridge"
     implementation "io.github.jho951.platform:platform-resource-governance-bridge"
     implementation project(':documents-api')

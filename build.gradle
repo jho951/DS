@@ -76,10 +76,12 @@ ext {
         PLATFORM_RESOURCE_OPERATIONAL_FAIL_FAST_ENABLED: 'platform_resource_operational_fail_fast_enabled',
         PLATFORM_RESOURCE_OPERATIONAL_PRODUCTION_PROFILES: 'platform_resource_operational_production_profiles',
         PLATFORM_RESOURCE_REQUIRE_KIND_POLICIES_IN_PRODUCTION: 'platform_resource_require_kind_policies_in_production',
+        PLATFORM_RESOURCE_JDBC_RELAY_AUTO_START: 'platform_resource_jdbc_relay_auto_start',
         PLATFORM_RESOURCE_DOCUMENT_MAX_SIZE: 'platform_resource_document_max_size',
         PLATFORM_RESOURCE_BLOCK_MAX_SIZE: 'platform_resource_block_max_size',
         PLATFORM_RESOURCE_ATTACHMENT_MAX_SIZE: 'platform_resource_attachment_max_size',
         DOCUMENTS_RESOURCE_STORAGE_ROOT: 'documents_resource_storage_root',
+        DOCUMENTS_RESOURCE_OUTBOX_RELAY_DELAY_MS: 'documents_resource_outbox_relay_delay_ms',
         DOCUMENTS_RESOURCE_PURGE_GRACE_PERIOD: 'documents_resource_purge_grace_period',
         DOCUMENTS_RESOURCE_PURGE_FIXED_DELAY_MS: 'documents_resource_purge_fixed_delay_ms',
         DOCUMENTS_RESOURCE_RECONCILE_FIXED_DELAY_MS: 'documents_resource_reconcile_fixed_delay_ms'

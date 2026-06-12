@@ -82,7 +82,7 @@ public interface BlockRepository extends JpaRepository<Block, UUID> {
             update Block b
             set b.deletedAt = :deletedAt,
                 b.updatedAt = :deletedAt,
-                b.updatedBy = :actorId,
+                b.modifiedBy = :actorId,
                 b.version = b.version + 1
             where b.id = :rootId
               and b.deletedAt is null
@@ -100,7 +100,7 @@ public interface BlockRepository extends JpaRepository<Block, UUID> {
             update Block b
             set b.deletedAt = :deletedAt,
                 b.updatedAt = :deletedAt,
-                b.updatedBy = :actorId,
+                b.modifiedBy = :actorId,
                 b.version = b.version + 1
             where b.id in :blockIds
               and b.id <> :rootId
@@ -117,7 +117,7 @@ public interface BlockRepository extends JpaRepository<Block, UUID> {
     @Query("""
             update Block b
             set b.deletedAt = :deletedAt,
-                b.updatedBy = :actorId
+                b.modifiedBy = :actorId
             where b.document.id = :documentId
               and b.deletedAt is null
             """)
@@ -131,7 +131,7 @@ public interface BlockRepository extends JpaRepository<Block, UUID> {
     @Query("""
             update Block b
             set b.deletedAt = null,
-                b.updatedBy = :actorId,
+                b.modifiedBy = :actorId,
                 b.updatedAt = :updatedAt
             where b.document.id = :documentId
               and b.deletedAt is not null

@@ -35,9 +35,7 @@ public abstract class BaseEntity {
         LocalDateTime now = LocalDateTime.now();
         createdAt = now;
         updatedAt = now;
-        if (version == null) {
-            version = 0;
-        }
+        if (version == null) version = 0;
     }
 
     @PreUpdate

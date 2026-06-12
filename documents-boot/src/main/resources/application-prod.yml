@@ -78,12 +78,15 @@ platform:
       enabled: ${PLATFORM_SECURITY_RATE_LIMIT_ENABLED:true}
   resource:
     mode: ${PLATFORM_RESOURCE_MODE:production}
-    operational:
-      require-kind-policies-in-production: true
     jdbc:
+      relay:
+        auto-start: ${PLATFORM_RESOURCE_JDBC_RELAY_AUTO_START:true}
+        poll-interval: ${DOCUMENTS_RESOURCE_OUTBOX_RELAY_DELAY_MS:1000ms}
       initialize-schema: ${PLATFORM_RESOURCE_JDBC_INITIALIZE_SCHEMA:false}
       catalog-table: ${PLATFORM_RESOURCE_JDBC_CATALOG_TABLE:platform_resource_catalog}
       outbox-table: ${PLATFORM_RESOURCE_JDBC_OUTBOX_TABLE:platform_resource_outbox}
+    operational:
+      require-kind-policies-in-production: true
     kinds:
       document-snapshot:
         allowed-content-types: [application/json]

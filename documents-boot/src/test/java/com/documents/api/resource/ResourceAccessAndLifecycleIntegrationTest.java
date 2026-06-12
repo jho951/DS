@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import com.documents.api.block.JsonTestUtils;
-import com.documents.boot.DocumentsResourceLifecycleRelay;
 import com.documents.boot.DocumentsResourcePurgeScheduler;
 import com.documents.domain.Block;
 import com.documents.domain.BlockType;
@@ -26,6 +25,7 @@ import com.documents.repository.DocumentResourceRepository;
 import com.documents.repository.DocumentRepository;
 import io.github.jho951.platform.resource.spi.ResourceLifecycleOutbox;
 import io.github.jho951.platform.resource.spi.ResourceCatalog;
+import io.github.jho951.platform.resource.jdbc.relay.JdbcResourceLifecycleOutboxRelay;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -62,7 +62,7 @@ class ResourceAccessAndLifecycleIntegrationTest {
     private ResourceLifecycleOutbox resourceLifecycleOutbox;
 
     @Autowired
-    private DocumentsResourceLifecycleRelay documentsResourceLifecycleRelay;
+    private JdbcResourceLifecycleOutboxRelay resourceLifecycleOutboxRelay;
 
     @Autowired
     private DocumentResourceRepository documentResourceRepository;
@@ -80,7 +80,7 @@ class ResourceAccessAndLifecycleIntegrationTest {
             .build();
         blockRepository.deleteAll();
         documentRepository.deleteAll();
-        documentsResourceLifecycleRelay.relay();
+        resourceLifecycleOutboxRelay.relayOnce();
     }
 
     @Test
@@ -125,7 +125,7 @@ class ResourceAccessAndLifecycleIntegrationTest {
             )
             .andExpect(status().isCreated());
 
-        documentsResourceLifecycleRelay.relay();
+        resourceLifecycleOutboxRelay.relayOnce();
 
         assertThat(resourceLifecycleOutbox.pending(100)).isEmpty();
     }
@@ -203,7 +203,7 @@ class ResourceAccessAndLifecycleIntegrationTest {
             .sortKey("00000000000000000001")
             .visibility(DocumentVisibility.PRIVATE)
             .createdBy(ownerId)
-            .updatedBy(ownerId)
+            .modifiedBy(ownerId)
             .createdAt(LocalDateTime.now())
             .updatedAt(LocalDateTime.now())
             .build());
@@ -217,7 +217,7 @@ class ResourceAccessAndLifecycleIntegrationTest {
             .content("{\"format\":\"rich_text\",\"schemaVersion\":1,\"segments\":[{\"text\":\"%s\",\"marks\":[]}]}".formatted(text))
             .sortKey(UUID.randomUUID().toString().replace("-", "").substring(0, 24))
             .createdBy(USER_ID)
-            .updatedBy(USER_ID)
+            .modifiedBy(USER_ID)
             .createdAt(LocalDateTime.now())
             .updatedAt(LocalDateTime.now())
             .build());

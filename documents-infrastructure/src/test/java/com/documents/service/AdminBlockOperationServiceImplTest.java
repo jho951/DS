@@ -252,7 +252,7 @@ class AdminBlockOperationServiceImplTest {
                 .title("문서")
                 .sortKey("00000000000000000001")
                 .createdBy(ACTOR_ID)
-                .updatedBy(ACTOR_ID)
+                .modifiedBy(ACTOR_ID)
                 .build();
         document.setVersion(version);
         return document;
@@ -266,12 +266,12 @@ class AdminBlockOperationServiceImplTest {
                         .title("문서")
                         .sortKey("00000000000000000001")
                         .createdBy(ACTOR_ID)
-                        .updatedBy(ACTOR_ID)
+                        .modifiedBy(ACTOR_ID)
                         .build())
                 .content("{\"format\":\"rich_text\",\"schemaVersion\":1,\"segments\":[{\"text\":\"내용\",\"marks\":[]}]}")
                 .sortKey("000000000001000000000000")
                 .createdBy(ACTOR_ID)
-                .updatedBy(ACTOR_ID)
+                .modifiedBy(ACTOR_ID)
                 .build();
         block.setVersion(version);
         return block;

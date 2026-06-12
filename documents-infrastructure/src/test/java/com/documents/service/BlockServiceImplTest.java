@@ -915,7 +915,7 @@ class BlockServiceImplTest {
                 .title("문서")
                 .sortKey("00000000000000000001")
                 .createdBy(ACTOR_ID)
-                .updatedBy(ACTOR_ID)
+                .modifiedBy(ACTOR_ID)
                 .build();
     }
 

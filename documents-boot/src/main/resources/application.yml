@@ -99,6 +99,10 @@ platform:
   resource:
     enabled: ${PLATFORM_RESOURCE_ENABLED:true}
     mode: ${PLATFORM_RESOURCE_MODE:local}
+    jdbc:
+      relay:
+        auto-start: ${PLATFORM_RESOURCE_JDBC_RELAY_AUTO_START:true}
+        poll-interval: ${DOCUMENTS_RESOURCE_OUTBOX_RELAY_DELAY_MS:1000ms}
     operational:
       fail-fast-enabled: ${PLATFORM_RESOURCE_OPERATIONAL_FAIL_FAST_ENABLED:true}
       production-profiles: ${PLATFORM_RESOURCE_OPERATIONAL_PRODUCTION_PROFILES:prod}

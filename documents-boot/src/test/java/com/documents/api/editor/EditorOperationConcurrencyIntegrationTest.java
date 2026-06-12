@@ -953,7 +953,7 @@ class EditorOperationConcurrencyIntegrationTest {
                 .title(title)
                 .sortKey("00000000000000000001")
                 .createdBy("user-123")
-                .updatedBy("user-123")
+                .modifiedBy("user-123")
                 .build());
     }
 
@@ -966,7 +966,7 @@ class EditorOperationConcurrencyIntegrationTest {
                 .content(content(text))
                 .sortKey(sortKey)
                 .createdBy("user-123")
-                .updatedBy("user-123")
+                .modifiedBy("user-123")
                 .build();
         return blockRepository.save(block);
     }

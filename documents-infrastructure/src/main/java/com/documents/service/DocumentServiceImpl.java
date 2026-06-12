@@ -56,7 +56,7 @@ public class DocumentServiceImpl implements DocumentService {
 			.visibility(DocumentVisibility.PRIVATE)
 			.sortKey(nextSortKey)
 			.createdBy(normalizedActorId)
-			.updatedBy(normalizedActorId)
+			.modifiedBy(normalizedActorId)
 			.build();
 
 		return documentRepository.save(document);

@@ -14,4 +14,7 @@ spring:
 
 platform:
   resource:
+    jdbc:
+      relay:
+        auto-start: false
     mode: local

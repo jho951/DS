@@ -104,13 +104,20 @@ allprojects {
     repositories {
         mavenLocal()
         mavenCentral()
-        ['platform-governance', 'platform-security', 'platform-resource', 'platform-integrations'].each { repoName ->
+        def githubPackagesUsername = findProperty('githubPackagesUsername') ?: System.getenv('GITHUB_ACTOR')
+        def githubPackagesToken = findProperty('githubPackagesToken') ?: findProperty('githubToken') ?: findProperty('ghToken') ?: System.getenv('GH_PACKAGES_TOKEN') ?: System.getenv('GH_TOKEN') ?: System.getenv('GITHUB_TOKEN')
+        def platformPackagesUrl = findProperty('platformPackagesUrl') ?: System.getenv('PLATFORM_PACKAGES_URL') ?: 'https://maven.pkg.github.com/jho951/platform-packages'
+        if (githubPackagesUsername && githubPackagesToken) {
             maven {
-                name = "GitHubPackages_${repoName.replace('-', '_')}"
-                url = uri("https://maven.pkg.github.com/jho951/${repoName}")
+                name = 'GitHubPlatformPackages'
+                url = uri(platformPackagesUrl)
                 credentials {
-                    username = findProperty('githubPackagesUsername') ?: System.getenv('GITHUB_ACTOR')
-                    password = findProperty('githubPackagesToken') ?: findProperty('githubToken') ?: findProperty('ghToken') ?: System.getenv('GH_PACKAGES_TOKEN') ?: System.getenv('GH_TOKEN') ?: System.getenv('GITHUB_TOKEN')
+                    username = githubPackagesUsername
+                    password = githubPackagesToken
+                }
+                metadataSources {
+                    mavenPom()
+                    artifact()
                 }
             }
         }
@@ -124,9 +131,9 @@ subprojects {
     dependencyManagement {
         imports {
             mavenBom "org.springframework.boot:spring-boot-dependencies:${rootProject.ext.resolvedSpringBootVersion}"
-            mavenBom "io.github.jho951.platform:platform-governance-bom:${rootProject.ext.resolvedPlatformGovernanceVersion}"
-            mavenBom "io.github.jho951.platform:platform-security-bom:${rootProject.ext.resolvedPlatformSecurityVersion}"
-            mavenBom "io.github.jho951.platform:platform-resource-bom:${rootProject.ext.resolvedPlatformResourceVersion}"
+            mavenBom "io.github.jho951.platform.packages:platform-governance-bom:${rootProject.ext.resolvedPlatformGovernanceVersion}"
+            mavenBom "io.github.jho951.platform.packages:platform-security-bom:${rootProject.ext.resolvedPlatformSecurityVersion}"
+            mavenBom "io.github.jho951.platform.packages:platform-resource-bom:${rootProject.ext.resolvedPlatformResourceVersion}"
         }
     }
 

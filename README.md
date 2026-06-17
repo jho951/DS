@@ -43,9 +43,9 @@
 
 ### GitHub Packages 인증
 
-`platform-governance`, `platform-security`, `platform-resource` 같은 platform 의존성은 GitHub Packages에서 내려받습니다. 이 인증 정보는 서버 런타임 토큰이 아니라 빌드와 의존성 해결에만 쓰는 개인 자격증명입니다.
+`platform-governance`, `platform-security`, `platform-resource` 같은 platform 의존성은 패키지 전용 repo(`https://github.com/jho951/platform-packages.git`)에 연결된 GitHub Packages에서 내려받습니다. 이 인증 정보는 서버 런타임 토큰이 아니라 빌드와 의존성 해결에만 쓰는 개인 자격증명입니다.
 
-공유 토큰을 저장소나 팀 공용 파일에 넣지 말고, 각 개발자가 개인 GitHub PAT에 `read:packages` 권한을 부여한 뒤 사용자 홈의 Gradle 설정에 둡니다.
+공유 토큰을 저장소나 팀 공용 파일에 넣지 말고, 각 개발자가 개인 GitHub PAT에 `read:packages` 권한을 부여한 뒤 사용자 홈의 Gradle 설정에 둡니다. 개발자는 platform 소스 repo 권한이 없어도 되고, `platform-packages` package repo read 권한만 있으면 됩니다.
 
 ```properties
 githubPackagesUsername=<your-github-id>
@@ -57,6 +57,12 @@ Docker dev build도 `scripts/run.docker.sh`가 같은 Gradle 설정을 읽어 `G
 ```bash
 GITHUB_ACTOR=<your-github-id>
 GH_TOKEN=<your-read-packages-token>
+```
+
+Gradle이 바라보는 기본 Maven package URL은 아래 값입니다. `https://github.com/jho951/platform-packages.git`는 Git repo 주소이고, Gradle 의존성 해석에는 GitHub Packages Maven endpoint를 사용합니다. 별도 mirror를 쓸 때만 override합니다.
+
+```bash
+PLATFORM_PACKAGES_URL=https://maven.pkg.github.com/jho951/platform-packages
 ```
 
 platform repo를 로컬 소스로 함께 개발할 때는 `../../platform/platform-*` 경로를 맞춘 뒤 Gradle에 `-PuseLocalPlatform=true`를 넘길 수 있습니다. 그래도 외부 GitHub Packages artifact가 남아 있으면 개인 인증 정보가 필요합니다.
